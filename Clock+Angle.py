@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
-hour = 3
-minute = 20
-print float(float(minute) * (30.0/60))
-hour_finger = float(hour) * (360 /12) + (float(minute) * float(30 / 60))
-minutes_finger = float(minute) * float(360 /60)
+hour = 13
+minute = 30
+hour = hour if (hour < 12) else (hour -12)
+print hour
+hour_finger = float(hour) * (360.0 /12) + (minute) * (30.0 / 60)
+
+minutes_finger = float(minute) * (360.0 /60)
 angle_diff = hour_finger - minutes_finger
 
 
