@@ -3,7 +3,7 @@ def multiple(a,b):
     return a * b
 
 def multiple_2(a,b):
-    return a * b
+    return a * b * 2
 
 
 def add(a,b): 
@@ -14,12 +14,8 @@ def add_and_5(a,b):
 
 
 def do_invert_func(f,z):
-    l = []
-    m = [(a,b) for a in range(z) for b in range(z)]
-    for (x,y) in m:
-        if f(x,y) == z:
-            l.append((x,y))
-    return l
+    m = [(a,b) for a in range(z) for b in range(z) if f(a,b) ==z]
+    return m
 
 def main():
     print do_invert_func(multiple, 40)
