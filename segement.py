@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-def smallest_segment(l):
+def smallest_segment(l): #O(N)
     small_sum = l[0]
     for i in range(1, len(l)):
         if sum(l[i]) < sum(small_sum): small_sum = l[i]
@@ -9,7 +9,7 @@ def smallest_segment(l):
         
 
 
-def segement_list(l):
+def segement_list(l): #O(N^2)
     m = []
     for i in range(len(l)):
         for j in range(len(l) - i):
