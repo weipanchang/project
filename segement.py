@@ -2,9 +2,9 @@
 
 
 def smallest_segment(l):
-    small_sum = l[0][:]
+    small_sum = l[0]
     for i in range(1, len(l)):
-        if sum(l[i]) < sum(small_sum): small_sum = l[i][:]
+        if sum(l[i]) < sum(small_sum): small_sum = l[i]
     return small_sum
         
 
