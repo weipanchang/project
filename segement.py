@@ -17,17 +17,14 @@ def segement_list(l):
     return m
 
 def main():
-    l = [4, -2, -3, -4]
-    m = segement_list([4, -2, -3, -4])
-    k = smallest_segment(m)
-    print smallest_segment(segement_list([4, -2, -3, -4]))
+    l = [4, 2, 3]
+    print l, " -----> ", segement_list(l)
+    print "smallest sum segment is ", smallest_segment(segement_list(l)), "\n"
     
-    
-#    print( [4, 2, 3]), " --->\n",  segement_list([4, 2, 3]), "\n", "segement_list of ( [4, 2, 3])", " should be [[4], [2], [3], [4, 2], [2, 3], [4, 2, 3]]"
-#    print smallest_segment([[4], [2], [3], [4, 2], [2, 3], [4, 2, 3]])
-#    print "The smallest sum segment is " % ([(smallest_segment([segement_list([4, 2, 3])]))])
-    #print segement_list( [-4, 2, 3, -2]), " should be [[4], [2], [3], [-2], [4, 2], [2, 3], [3, -2], [4, 2, 3], [2, 3, -2], [4, 2, 3, -2]]"
-    #print "The smallest segment sum is " % (smallest_segment(segement_list([-4, -2, 3, 2])))
+    l = [-4, 2, -3, 3]
+    print l, " -----> ", segement_list(l)
+    print "smallest sum segment is ", smallest_segment(segement_list(l))
+
     return
 
 if __name__ ==  "__main__":
