@@ -3,8 +3,11 @@
 
 def smallest_segment(l): #O(N)
     small_sum = l[0]
+    sum_value = sum(small_sum)
     for i in range(1, len(l)):
-        if sum(l[i]) < sum(small_sum): small_sum = l[i]
+        if sum(l[i]) < sum_value:
+            small_sum = l[i]
+            sum_value = sum(small_sum)
     return small_sum
         
 
