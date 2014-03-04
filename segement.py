@@ -21,7 +21,7 @@ def main():
     l = [4, 2, 3]
     print l, " -----> ", segement_list(l)
     print "smallest sum segment is ", smallest_segment(segement_list(l)), "\n"
-    
+
     l = [-4, 2, -3, 3]
     print l, " -----> ", segement_list(l)
     print "smallest sum segment is ", smallest_segment(segement_list(l))
@@ -29,7 +29,6 @@ def main():
     l = [4, -4, -1, -3]
     print l, " -----> ", segement_list(l)
     print "smallest sum segment is ", smallest_segment(segement_list(l))
-
     return
 
 if __name__ ==  "__main__":
