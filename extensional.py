@@ -27,7 +27,7 @@ class TestUM(unittest.TestCase):
     def test_empty_set(self):
         s = ranger(4,10)
         self.assertEqual(s(5), True)
-        self.assertEqual(s(2), True)
+        self.assertEqual(s(2), False)
         self.assertEqual(s(12), False)
     def teardown(self):
         pass
