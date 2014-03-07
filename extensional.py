@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import unittest
+import math
 
 def empty_set():  return (lambda x: False)
 
@@ -20,7 +21,7 @@ def add_range(s, l, u):
     return (lambda y: (s(y) or (l < y and y < u)))
 
 def remove(s, x):
-    return (lambda y: s(y) and (not y== x))
+    return (lambda y: s(y) and (not y == x))
 
 def remove_many(s, xs):
     return (lambda y: s(y) and (not y in xs))
@@ -33,6 +34,9 @@ def complement(s):
 
 def add_one(y):
     return y - 1
+
+def double_it(y):
+    return math.sqrt(y)
 
 def map_set(f, s):
     return (lambda y: s(f(y)))
@@ -147,6 +151,16 @@ class TestRun(unittest.TestCase):
         self.assertEqual(t(7), True)
         self.assertEqual(t(9), True)
         self.assertEqual(t(10), False)
+        
+        t = map_set(double_it, s)
+        self.assertEqual(t(3), False)
+        self.assertEqual(t(16), True)
+        self.assertEqual(t(25), True)
+        self.assertEqual(t(36), True)
+        self.assertEqual(t(49), True)
+        self.assertEqual(t(81), False)
+        self.assertEqual(t(100), False)
+        
 
     def test_even(self):
         self.assertEqual(even(3), False)
