@@ -31,15 +31,14 @@ def remove_range(s, l, u):
 def complement(s):
     return (lambda y: not s(y))
 
-def add_one(s):
-    return (lambda y: s(y-1))
-
+def add_one(y):
+    return y - 1
+    
 def map_set(f, s):
-    t = f(s)
-    return (lambda y: t(y))
+    return (lambda y: s(f(y)))    
 
 def even(y):
-    return  True if ((y % 2) == 0) else False
+    return  (y % 2) == 0
 
 def filter_set(p, s):
     return (lambda y: p(y) and s(y))
@@ -128,27 +127,17 @@ class TestRun(unittest.TestCase):
         self.assertEqual(s(6), True)
         self.assertEqual(s(10), True)
         
-    def test_add_one(self):
+    def test_map_set(self):
         s = empty_set()
-        t = add_one(s)
+        t = map_set(add_one, s)
         self.assertEqual(t(6), False)
         self.assertEqual(t(5), False)
         
         s = singleton(5)
-        t = add_one(s)
+        t = map_set(add_one, s)
         self.assertEqual(t(6), True)
         self.assertEqual(t(5), False)
         
-        s = range_set(3, 9)
-        t = add_one(s)
-        self.assertEqual(t(3), False)
-        self.assertEqual(t(4), False)
-        self.assertEqual(t(5), True)
-        self.assertEqual(t(8), True)
-        self.assertEqual(t(9), True)
-        self.assertEqual(t(10), False)
-        
-    def test_map_set(self):
         s = range_set(3, 9)
         t = map_set(add_one, s)
         self.assertEqual(t(3), False)
