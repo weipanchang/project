@@ -33,9 +33,15 @@ def complement(s):
 
 def add_one(y):
     return y - 1
+<<<<<<< HEAD
     
 def map_set(f, s):
     return (lambda y: s(f(y)))    
+=======
+
+def map_set(f, s):
+    return (lambda y: s(f(y)))
+>>>>>>> bug-fix
 
 def even(y):
     return  (y % 2) == 0
@@ -126,18 +132,30 @@ class TestRun(unittest.TestCase):
         self.assertEqual(s(8), True)
         self.assertEqual(s(6), True)
         self.assertEqual(s(10), True)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> bug-fix
     def test_map_set(self):
         s = empty_set()
         t = map_set(add_one, s)
         self.assertEqual(t(6), False)
         self.assertEqual(t(5), False)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> bug-fix
         s = singleton(5)
         t = map_set(add_one, s)
         self.assertEqual(t(6), True)
         self.assertEqual(t(5), False)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> bug-fix
         s = range_set(3, 9)
         t = map_set(add_one, s)
         self.assertEqual(t(3), False)
@@ -147,12 +165,20 @@ class TestRun(unittest.TestCase):
         self.assertEqual(t(7), True)
         self.assertEqual(t(9), True)
         self.assertEqual(t(10), False)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> bug-fix
     def test_even(self):
         self.assertEqual(even(3), False)
         self.assertEqual(even(4), True)
         self.assertEqual(even(5), False)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> bug-fix
     def test_filter_set(self):
         s = range_set(3, 12)
         t = filter_set(even, s)
@@ -163,7 +189,11 @@ class TestRun(unittest.TestCase):
         self.assertEqual(t(7), False)
         self.assertEqual(t(10), True)
         self.assertEqual(t(12), False)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> bug-fix
     def teardown(self):
         pass
 
