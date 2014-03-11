@@ -4,9 +4,13 @@
 #purpose
 import math
 
+def do_factorial(n):
+    if n == 1: return 1
+    else: return n * do_factorial(n-1)
 
 def do_factor(number):
-    n = int((math.sqrt((number))) + 1)    
+    n = int((math.sqrt((number))) + 1)
+#    n = number + 1    
     factor=[]
     
     for i in range(2,n):
@@ -15,9 +19,7 @@ def do_factor(number):
                factor.append(i)
            if number/i not in factor:
                factor.append(number/i)
-    #factor.sort()
     return sorted(factor)
-
 
 def do_primary(l):
     m = []
@@ -45,8 +47,9 @@ def multiplicity(n, p):
     return i
 
 def main():
-    number = int(raw_input("what is the number? "))
-    
+    number_input = int(raw_input("what is the number? "))
+    number = do_factorial(number_input)
+#    print number
     factor_list = do_factor(number)
 #    print factor_list
     primary_list = do_primary(factor_list)
@@ -57,8 +60,6 @@ def main():
     for i in multiplicities_list:
         answer = answer * (i+1)
     print answer
-
-    
 
 if __name__ == '__main__':
     main()
