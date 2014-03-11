@@ -53,7 +53,7 @@ def main():
     factor_list = do_factor(number)
 #    print factor_list
     primary_list = do_primary(factor_list)
-#    print primary_list
+    print primary_list
     multiplicities_list = do_multiplicities(number, primary_list)
 #    print multiplicities_list
     answer = 1
