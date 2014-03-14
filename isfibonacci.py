@@ -11,7 +11,7 @@ for i in range(1,10):
 
 n = int(raw_input('the number? '))
 
-if n // 2 ==0 : print 'is not fib'
+if n // 2 == 0 : print 'is not fib'
 else:
     i = 0
     while 1:
