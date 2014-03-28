@@ -10,10 +10,10 @@ def decimal_to_binary(n, base):
         if i ==  len(l)-1:
             return str(n)
         else:
-            if n >= l[i]:
-                x = str(n // l[i])
-                n = n  % l[i]
-            else: x = '0'
+            #if n >= l[i]:
+            x = str(n // l[i])
+            n = n  % l[i]
+            #else: x = '0'
             return x + (recursive(n, i + 1))
 
     return recursive(n, 0)
