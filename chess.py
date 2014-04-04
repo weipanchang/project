@@ -40,6 +40,8 @@ chess position state.
 p = Piece('K', 'b')
 print p.show_piece() # 'Kb'
 """
+import sys
+
 class ChessException(Exception):
 
     def __init__(self, value):
@@ -72,14 +74,14 @@ class Board():
     def __init__(self, board = None):
         if board == None: 
             white_king = Piece('K','w')
-            white_rock = Piece('R','w')
+            white_rook = Piece('R','w')
             white_queen = Piece('Q','w')
             white_bishop = Piece('B','w')
             white_knight = Piece('N','w')
             white_pawn = Piece('P','w')
             
             black_king = Piece('K','b')
-            black_rock = Piece('R','b')
+            black_rook = Piece('R','b')
             black_queen = Piece('Q','b')
             black_bishop = Piece('B','b')
             black_knight = Piece('N','b')
@@ -87,14 +89,14 @@ class Board():
             
             self.board = {i + j: None for i in 'ABCDEFGH' for j in '87654321'}
             
-            self.board['A1'] =  white_rock
+            self.board['A1'] =  white_rook
             self.board['B1'] =  white_knight
             self.board['C1'] =  white_bishop
             self.board['D1'] =  white_king
             self.board['E1'] =  white_queen
             self.board['F1'] =  white_bishop
             self.board['G1'] =  white_knight
-            self.board['H1'] =  white_rock
+            self.board['H1'] =  white_rook
             self.board['A2'] =  white_pawn
             self.board['B2'] =  white_pawn
             self.board['C2'] =  white_pawn
@@ -104,14 +106,14 @@ class Board():
             self.board['G2'] =  white_pawn
             self.board['H2'] =  white_pawn
         
-            self.board['A8'] =  black_rock
+            self.board['A8'] =  black_rook
             self.board['B8'] =  black_knight
             self.board['C8'] =  black_bishop
             self.board['D8'] =  black_king
             self.board['E8'] =  black_queen
             self.board['F8'] =  black_bishop
             self.board['G8'] =  black_knight
-            self.board['H8'] =  black_rock
+            self.board['H8'] =  black_rook
             self.board['A7'] =  black_pawn
             self.board['B7'] =  black_pawn
             self.board['C7'] =  black_pawn
@@ -122,11 +124,6 @@ class Board():
             self.board['H7'] =  black_pawn
         else:
             self.board = board
-
-    #def __new__(self, board):
-    #    inst = self.__new__(board)
-    #    return inst 
-
     
     def prettify(self):
         
@@ -137,25 +134,47 @@ class Board():
         print self.prettify()
     
     def move(self, start, end):
+        start = start.upper()
+        end = end.upper()
         if start not in self.board.keys(): raise_piece_invalid_move_exception
         if end not in self.board.keys(): raise_piece_invalid_move_exception
         if not self.board[start]: raise_piece_invalid_move_exception
         if  not self.board[end] and not self.board[start]:
             if self.board[start].show_piece()[1] == self.board[end].show_piece()[1]: raise_piece_invalid_move_exception
         self.board[start], self.board[end] = None, self.board[start]
-        #board_str = ''.join([(''.join(['  ' if not self.board[x] else self.board[x].show_piece() for x in [y+z for y in 'ABCDEFGH']])) for z in '87654321'])
-        #print board_str
-        
         return Board( {i + j: None if not self.board[i+j] else self.board[i+j] for i in 'ABCDEFGH' for j in '87654321' })
         
         
-a = Board()
-a.pretty_print()
-b = a.move('E2', 'E4')
-b.pretty_print()
+#a = Board()
+#a.pretty_print()
+#b = a.move('e2', 'E4').move('H8', 'h6').move('A2', 'A3')
+#b.pretty_print()
 
-c = b.move('H8', 'H6')
-c.pretty_print()
+
+def read_file(s):
+
+    try:
+        with open(s, 'r') as infile:
+            move = [tuple(line.split()) for line in infile]
+        return move
+    except IOError:
+        
+        sys.exit("The file %s cannot be found, exiting gracefully" % s)
+
+def main(s):
+    chess_move_list = read_file(s)
+    
+    print  chess_move_list
+
+
+if __name__ == '__main__':
+    
+    if len(sys.argv) != 2:
+        
+        sys.exit("Usage: python %s [input file path]" % sys.argv[0])
+           
+    read_in_file_name = sys.argv[1]
+    main(read_in_file_name)
 
         
       
