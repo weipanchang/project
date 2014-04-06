@@ -41,6 +41,7 @@ p = Piece('K', 'b')
 print p.show_piece() # 'Kb'
 """
 import sys
+import os
 
 class ChessException(Exception):
 
@@ -149,7 +150,65 @@ class Board():
 #a.pretty_print()
 #b = a.move('e2', 'E4').move('H8', 'h6').move('A2', 'A3')
 #b.pretty_print()
+def read_and_move(l):
+    
+    #board = board.move(l[0][0], l[0][1])
 
+    #previous_move, current_move, next_move = l[0], l[1], l[2:]
+    
+    def move_piece(board, index, l):
+        if len(l) == index+1:
+            os.system('clear')
+            board = board.move(l[index][0], l[index][1])
+            board.pretty_print()
+            print "end of game! "
+            user_input=raw_input("next? B)ack, E)nd....  ")
+            if user_input[0] == 'E':
+                sys.exit("Program ended")
+            elif user_input[0] == 'B':
+                board = board.move(l[index][1], l[index][0])
+                board = board.move(l[index-1][1], l[index-1][0])
+                return move_piece(board, index - 1, l)
+            else:
+                board = board.move(l[index][1], l[index][0])
+                return move_piece(board, index, l)
+            return
+        else:
+            os.system('clear')
+            #board = board.move(l[0][0], l[0][1])
+            board.pretty_print()
+            print
+            if index == 0:
+                board = board.move(l[index][0], l[index][1])
+                board.pretty_print()
+                user_input=raw_input("next? N)ext, E)nd.....  ")
+                if user_input[0] == 'E':
+                    sys.exit("Program ended")
+                elif user_input[0] == 'N':
+                    return move_piece(board, index + 1, l)
+                else: return move_piece(board.move(l[index][1], l[index][0]), index, l)
+            else:
+                
+                board = board.move(l[index][0], l[index][1])
+                os.system('clear')
+                board.pretty_print()
+                user_input=raw_input("next? B)ack N)ext, E)nd....  ")
+                if user_input[0] == 'E':
+                    sys.exit("Program ended")
+                elif user_input[0] == 'N':
+                    return move_piece(board,index + 1, l)
+                elif user_input[0] == 'B':
+                    board = board.move(l[index][1], l[index][0])
+                    board = board.move(l[index-1][1], l[index-1][0])
+                    return move_piece(board, index - 1, l)
+                else:
+                    board = board.move(l[index][1], l[index][0])
+                    return move_piece(board, index, l)
+    os.system('clear')
+    board = Board()
+    #board.pretty_print()
+    move_piece(board, 0, l)
+    
 
 def read_file(s):
 
@@ -165,6 +224,7 @@ def main(s):
     chess_move_list = read_file(s)
     
     print  chess_move_list
+    read_and_move(chess_move_list)
 
 
 if __name__ == '__main__':
