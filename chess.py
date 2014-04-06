@@ -180,6 +180,7 @@ def read_and_move(l):
             print
             if index == 0:
                 board = board.move(l[index][0], l[index][1])
+                os.system('clear')
                 board.pretty_print()
                 user_input=raw_input("next? N)ext, E)nd.....  ")
                 if user_input[0] == 'E':
